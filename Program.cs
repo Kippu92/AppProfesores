@@ -1,3 +1,5 @@
+using AppProfesores;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +17,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapGet("/api/weatherforecast", () =>
+{
+    return new WeatherForecast[]
+    {
+        new WeatherForecast { Date = DateOnly.MaxValue, TemperatureC = 25, Summary = "Sunny" }
+    };
+});
+
+app.Run();
 
 app.UseHttpsRedirection();
 
